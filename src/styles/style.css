@@ -27,8 +27,8 @@ button {
 }
 
 h1 {
-  padding: 2rem;
   background-color: #818181;
+  padding-inline: .5rem;
 }
 
 body {
