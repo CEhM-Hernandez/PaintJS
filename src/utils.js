@@ -94,7 +94,6 @@ function useRectangle (key, offsetX, offsetY) {
 
   if (key) {
     const { SymmetricWidth, SymmetricHeight } = calcSymmetricSize(width, height)
-
     ctx.beginPath()
     ctx.strokeRect(x0, y0, SymmetricWidth, SymmetricHeight)
   } else {
@@ -129,9 +128,9 @@ function useLine (offsetX, offsetY) {
 
 function calcSymmetricSize (width, height) {
   const size = Math.min(Math.abs(width), Math.abs(height))
-  width = width < 0 ? -size : size
-  width = height < 0 ? -size : size
-  return { SymmetricWidth: width, SymmetricHeight: height }
+  const SymmetricWidth = width < 0 ? -size : size
+  const SymmetricHeight = height < 0 ? -size : size
+  return { SymmetricWidth, SymmetricHeight }
 }
 
 async function useEyeDropper (previousTool) {
