@@ -1,5 +1,3 @@
-// ----------------- constants ----------------- //
-
 const tools = {
   none: 'none',
   pencil: 'pencil',

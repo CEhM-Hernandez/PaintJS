@@ -1,6 +1,6 @@
 import { $, $$ } from './utils'
-// ----------------- elements ----------------- //
-// tools //
+
+// ----------------- tools ----------------- //
 const $$tools = $$('.tool')
 
 const $clear = $('#clear')
@@ -10,7 +10,7 @@ const $lineWidthDot = $('.lineWidthDot')
 const $lineJoinContainer = $('#lineJoin-container')
 const $$lineJoinBtn = $$('.lineJoinBtn')
 
-// canvas //
+// ----------------- canvas element ----------------- //
 const $canvas = $('#paintCanvas')
 const ctx = $canvas.getContext('2d', { willReadFrequently: true })
 $canvas.style = 'background-color: #fff;'

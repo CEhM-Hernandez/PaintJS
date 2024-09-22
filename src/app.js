@@ -2,8 +2,7 @@ import { tools } from './constants'
 import { $$tools, $clear, $color, $lineWidth, $lineWidthDot, $lineJoinContainer, $$lineJoinBtn, $canvas, ctx } from './elements'
 import { options, setTool, currentTool, startDrawing, drawing, stopDrawing, clearCanvas } from './utils'
 
-// ----------------- events ----------------- //
-// tool events //
+// ----------------- tool events ----------------- //
 $$tools.forEach(tool => {
   tool.addEventListener('click', (event) => {
     const $btn = event.target.closest('button')
@@ -52,7 +51,7 @@ $$lineJoinBtn.forEach(lineJoin => {
   })
 })
 
-// draw events //
+// ----------------- draw events ----------------- //
 $canvas.addEventListener('mousedown', startDrawing)
 $canvas.addEventListener('mousemove', drawing)
 $canvas.addEventListener('mouseup', stopDrawing)
