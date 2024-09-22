@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./src/styles/style.css">
+  <script type="module" src="https://kit.fontawesome.com/7938d78b4b.js" crossorigin="anonymous"></script>
+  <script type="module" src="./src/app.js"></script>
+  <title>PaintJS</title>
+</head>
+
+<body class="pixelify">
+  <h1 class="border-3d">
+    <i class="fa-solid fa-palette"></i>
+    PaintJS
+  </h1>
+  <main class="border-3d">
+    <header class="paint-header-controls border-3d">
+      <nav>
+        <button class="button border-3d" hover>
+          <i class="fa-regular fa-floppy-disk"></i>
+        </button>
+        <button class="button border-3d" hover>
+          <i class="fa-regular fa-folder"></i>
+        </button>
+        <button class="button border-3d" hover>
+          <i class="fa-solid fa-rotate-left"></i>
+        </button>
+        <button class="button border-3d" hover>
+          <i class="fa-solid fa-rotate-right"></i>
+        </button>
+      </nav>
+      <nav>
+        <button class="button border-3d" hover>
+          <i class="fa-solid fa-minus"></i>
+        </button>
+        <button class="button border-3d" hover>
+          <i class="fa-regular fa-window-restore"></i>
+        </button>
+        <button class="button button-x border-3d" hover>
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </nav>
+    </header>
+    <nav class="topbar-options border-3d">
+      <div class="lineWidth-container">
+        <label for="lineWidth" id="lineWidthLabel" class="lineWidthLabel">
+          <span class="lineWidthDot"></span>
+        </label>
+        <input type="range" id="lineWidth" class="border-3d" value="2" min="2" max="32" step="5" />
+      </div>
+      <div class="lineJoin-container hidden" id="lineJoin-container">
+        <button class="border-3d button lineJoinBtn" value="miter" active hover>
+          <svg aria-hidden="true" focusable="false" role="img" viewBox="0 0 20 20" class="" fill="none"
+            stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <svg stroke-width="1.5">
+              <path
+                d="M3.33334 9.99998V6.66665C3.33334 6.04326 3.33403 4.9332 3.33539 3.33646C4.95233 3.33436 6.06276 3.33331 6.66668 3.33331H10">
+              </path>
+              <path d="M13.3333 3.33331V3.34331"></path>
+              <path d="M16.6667 3.33331V3.34331"></path>
+              <path d="M16.6667 6.66669V6.67669"></path>
+              <path d="M16.6667 10V10.01"></path>
+              <path d="M3.33334 13.3333V13.3433"></path>
+              <path d="M16.6667 13.3333V13.3433"></path>
+              <path d="M3.33334 16.6667V16.6767"></path>
+              <path d="M6.66666 16.6667V16.6767"></path>
+              <path d="M10 16.6667V16.6767"></path>
+              <path d="M13.3333 16.6667V16.6767"></path>
+              <path d="M16.6667 16.6667V16.6767"></path>
+            </svg>
+          </svg>
+        </button>
+        <button class="border-3d button lineJoinBtn" value="round" hover>
+          <svg aria-hidden="true" focusable="false" role="img" viewBox="0 0 20 20" class="" fill="none"
+            stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <svg aria-hidden="true" focusable="false" role="img" viewBox="0 0 24 24" class="" fill="none"
+              stroke-width="2" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <g stroke-width="1.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M4 12v-4a4 4 0 0 1 4 -4h4"></path>
+                <line x1="16" y1="4" x2="16" y2="4.01"></line>
+                <line x1="20" y1="4" x2="20" y2="4.01"></line>
+                <line x1="20" y1="8" x2="20" y2="8.01"></line>
+                <line x1="20" y1="12" x2="20" y2="12.01"></line>
+                <line x1="4" y1="16" x2="4" y2="16.01"></line>
+                <line x1="20" y1="16" x2="20" y2="16.01"></line>
+                <line x1="4" y1="20" x2="4" y2="20.01"></line>
+                <line x1="8" y1="20" x2="8" y2="20.01"></line>
+                <line x1="12" y1="20" x2="12" y2="20.01"></line>
+                <line x1="16" y1="20" x2="16" y2="20.01"></line>
+                <line x1="20" y1="20" x2="20" y2="20.01"></line>
+              </g>
+            </svg>
+        </button>
+      </div>
+    </nav>
+    <aside class="paint-aside-utils border-3d">
+      <nav>
+        <button id="pencil" class="button border-3d tool" hover>
+          <i class="fa-solid fa-pen"></i>
+        </button>
+        <button id="eraser" class="button border-3d tool" hover>
+          <i class="fa-solid fa-eraser"></i>
+        </button>
+        <button id="line" class="button border-3d tool" hover>
+          <i class="fa-solid fa-slash"></i>
+        </button>
+        <button id="elipsis" class="button border-3d tool" hover>
+          <i class="fa-regular fa-circle"></i>
+        </button>
+        <button id="rectangle" class="button border-3d tool" hover>
+          <i class="fa-regular fa-square-full"></i>
+        </button>
+        <button id="eyeDropper" class="button border-3d tool" hover>
+          <i class="fa-solid fa-eye-dropper"></i>
+        </button>
+      </nav>
+      <nav>
+        <input type="color" id="color" class="button border-3d" hover>
+        <button id="clear" class="button border-3d" hover>
+          <i class="fa-solid fa-trash-can"></i>
+        </button>
+      </nav>
+    </aside>
+    <canvas id="paintCanvas" class="canvas" width="1000" height="600"></canvas>
+  </main>
+</body>
+
+</html>
