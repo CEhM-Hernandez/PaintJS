@@ -1,6 +1,6 @@
 import { tools } from './constants'
-import { $$tools, $clear, $color, $lineWidth, $lineWidthDot, $lineJoinContainer, $$lineJoinBtn, $canvas, ctx } from './elements'
-import { options, setTool, currentTool, startDrawing, drawing, stopDrawing, clearCanvas } from './utils'
+import { $clear, $color, $$tools, $lineWidth, $lineJoinContainer, $eyeDropper, $lineWidthDot, $$lineJoinBtn, $canvas, ctx } from './elements'
+import { options, currentTool, setTool, startDrawing, drawing, stopDrawing, clearCanvas } from './utils'
 
 // ----------------- tool events ----------------- //
 $$tools.forEach(tool => {
@@ -10,32 +10,28 @@ $$tools.forEach(tool => {
     if (!$btn) return
 
     if ($btn.getAttribute('active') !== null) {
-      $btn.removeAttribute('active')
       setTool(tools.none)
       $lineJoinContainer.classList.add('hidden')
       return
-    } else {
-      $$tools.forEach(tool => tool.removeAttribute('active'))
-      $btn.setAttribute('active', '')
     }
 
     if ($btn.id === 'rectangle') $lineJoinContainer.classList.toggle('hidden')
     else $lineJoinContainer.classList.add('hidden')
-    setTool($btn.id)
+    setTool($btn.id, currentTool)
   })
 })
+
+if (typeof window.EyeDropper !== 'undefined') $eyeDropper.removeAttribute('disabled')
 
 $clear.addEventListener('click', clearCanvas)
 
 $color.addEventListener('change', (event) => {
   options.color = event.target.value
-  $lineWidth.style = `background-color: ${options.color};`
-  $lineWidthDot.style = `background-color: ${options.color}; height: ${options.lineWidth * 0.9}px; width: ${options.lineWidth * 0.9}px;`
 })
 
 $lineWidth.addEventListener('input', (event) => {
   options.lineWidth = event.target.value
-  $lineWidthDot.style = `height: ${options.lineWidth * 0.9}px; width: ${options.lineWidth * 0.9}px; background-color: ${options.color};`
+  $lineWidthDot.style = `height: ${options.lineWidth * 0.9}px; width: ${options.lineWidth * 0.9}px;`
 })
 
 $$lineJoinBtn.forEach(lineJoin => {
@@ -58,7 +54,7 @@ $canvas.addEventListener('mouseup', stopDrawing)
 $canvas.addEventListener('mouseleave', stopDrawing)
 
 // ----------------- cursor events ----------------- //
-$canvas.addEventListener('mousemove', (event) => {
+$canvas.addEventListener('mousemove', () => {
   if (currentTool === tools.pencil || currentTool === tools.eraser) {
     $canvas.style.cursor = 'none'
     const cursorSize = (options.lineWidth * 0.9) <= 10 ? 10 : options.lineWidth * 0.9

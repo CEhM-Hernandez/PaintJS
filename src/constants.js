@@ -5,7 +5,7 @@ const tools = {
   line: 'line',
   rectangle: 'rectangle',
   elipsis: 'elipsis',
-  text: 'text'
+  eyeDropper: 'eyeDropper'
 }
 
 const globalCompositeOperation = {

@@ -1,5 +1,5 @@
 import { tools, defaultOptions, globalCompositeOperation } from './constants.js'
-import { $canvas, ctx } from './elements'
+import { $canvas, ctx, $color, $$tools } from './elements'
 
 const $ = (selector) => document.querySelector(selector)
 const $$ = (selector) => document.querySelectorAll(selector)
@@ -12,13 +12,18 @@ let lastX, lastY
 let currentTool = tools.none
 let ctxImageData
 
-function setTool (tool) {
+function setTool (tool, previousTool) {
   options.globalCompositeOperation = defaultOptions.globalCompositeOperation
 
   if (currentTool === tool) {
     currentTool = tools.none
+    $$tools.forEach(tool => tool.removeAttribute('active'))
     return
-  } else if (tool === tools.pencil) {
+  }
+  $$tools.forEach(tool => tool.removeAttribute('active'))
+  $(`#${tool}`).setAttribute('active', '')
+
+  if (tool === tools.pencil) {
     currentTool = tools.pencil
     return
   } else if (tool === tools.eraser) {
@@ -33,6 +38,10 @@ function setTool (tool) {
     return
   } else if (tool === tools.elipsis) {
     currentTool = tools.elipsis
+    return
+  } else if (tool === tools.eyeDropper) {
+    currentTool = tools.eyeDropper
+    useEyeDropper(previousTool)
     return
   }
   currentTool = tools.none
@@ -51,7 +60,6 @@ function drawing (event) {
   if (!isDrawing) return
 
   const { offsetX, offsetY } = event
-
   ctx.strokeStyle = options.color
   ctx.lineWidth = options.lineWidth
 
@@ -121,6 +129,20 @@ function calcSymmetricSize (width, height) {
   width = width < 0 ? -size : size
   width = height < 0 ? -size : size
   return { SymmetricWidth: width, SymmetricHeight: height }
+}
+
+async function useEyeDropper (previousTool) {
+  const eyeDropper = new window.EyeDropper()
+
+  try {
+    const result = await eyeDropper.open()
+    const { sRGBHex: color } = result
+    options.color = color
+    $color.value = color
+    setTool(previousTool, currentTool)
+  } catch (e) {
+    console.error(e)
+  }
 }
 
 function stopDrawing (event) {

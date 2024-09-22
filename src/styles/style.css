@@ -80,6 +80,15 @@ main {
     border-left: 2px solid #000;
     border-top: 2px solid #000;
   }
+
+  &:disabled {
+    background-color: #313131;
+    cursor: not-allowed;
+    border-bottom: 2px solid #fff;
+    border-right: 2px solid #fff;
+    border-left: 2px solid #000;
+    border-top: 2px solid #000;
+  }
 }
 
 .topbar-options {
