@@ -9,12 +9,6 @@ $$tools.forEach(tool => {
 
     if (!$btn) return
 
-    if ($btn.getAttribute('active') !== null) {
-      setTool(tools.none)
-      $lineJoinContainer.classList.add('hidden')
-      return
-    }
-
     if ($btn.id === 'rectangle') $lineJoinContainer.classList.toggle('hidden')
     else $lineJoinContainer.classList.add('hidden')
     setTool($btn.id, currentTool)

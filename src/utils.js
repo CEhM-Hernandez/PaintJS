@@ -15,16 +15,18 @@ let ctxImageData
 function setTool (tool, previousTool) {
   options.globalCompositeOperation = defaultOptions.globalCompositeOperation
 
-  if (currentTool === tool) {
+  if (tool === previousTool) {
     currentTool = tools.none
     $$tools.forEach(tool => tool.removeAttribute('active'))
     return
   }
+
   $$tools.forEach(tool => tool.removeAttribute('active'))
   $(`#${tool}`).setAttribute('active', '')
 
   if (tool === tools.pencil) {
     currentTool = tools.pencil
+    console.log('pencil')
     return
   } else if (tool === tools.eraser) {
     currentTool = tools.eraser
@@ -49,6 +51,7 @@ function setTool (tool, previousTool) {
 
 function startDrawing (event) {
   isDrawing = currentTool !== tools.none
+
   const { offsetX, offsetY } = event;
   [lastX, lastY] = [x0, y0] = [offsetX, offsetY]
   ctx.globalCompositeOperation = options.globalCompositeOperation
