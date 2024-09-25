@@ -26,7 +26,6 @@ function setTool (tool, previousTool) {
 
   if (tool === tools.pencil) {
     currentTool = tools.pencil
-    console.log('pencil')
     return
   } else if (tool === tools.eraser) {
     currentTool = tools.eraser
@@ -55,6 +54,9 @@ function startDrawing (event) {
   const { offsetX, offsetY } = event;
   [lastX, lastY] = [x0, y0] = [offsetX, offsetY]
   ctx.globalCompositeOperation = options.globalCompositeOperation
+  ctx.lineJoin = options.lineJoin
+  ctx.lineCap = 'round'
+  ctx.miterLimit = 1
 
   if (currentTool === tools.rectangle || currentTool === tools.line || currentTool === tools.elipsis) ctxImageData = ctx.getImageData(0, 0, $canvas.width, $canvas.height)
 }

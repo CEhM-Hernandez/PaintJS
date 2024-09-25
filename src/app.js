@@ -1,5 +1,5 @@
 import { tools } from './constants'
-import { $clear, $color, $$tools, $lineWidth, $lineJoinContainer, $eyeDropper, $lineWidthDot, $$lineJoinBtn, $canvas, ctx } from './elements'
+import { $clear, $color, $$tools, $lineWidth, $lineJoinContainer, $eyeDropper, $lineWidthDot, $$lineJoinBtn, $canvas } from './elements'
 import { options, currentTool, setTool, startDrawing, drawing, stopDrawing, clearCanvas } from './utils'
 
 // ----------------- tool events ----------------- //
@@ -37,7 +37,7 @@ $$lineJoinBtn.forEach(lineJoin => {
     $$lineJoinBtn.forEach(btn => btn.removeAttribute('active'))
     $btn.setAttribute('active', '')
 
-    ctx.lineJoin = $btn.value
+    options.lineJoin = $btn.id
   })
 })
 

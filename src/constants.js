@@ -20,7 +20,8 @@ const defaultOptions = {
   fontSize: 16,
   fontFamily: 'Arial',
   cursor: 'default',
-  globalCompositeOperation: globalCompositeOperation.sourceOver
+  globalCompositeOperation: globalCompositeOperation.sourceOver,
+  lineJoin: 'round'
 }
 
 export { tools, globalCompositeOperation, defaultOptions }
